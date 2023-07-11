@@ -1,0 +1,777 @@
+@prefix : <http://www.semanticweb.org/eto/ontologies/2023/5/foot/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foot: <http://www.semanticweb.org/eto/ontologies/2023/5/foot#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/eto/ontologies/2023/5/foot/> .
+
+<http://www.semanticweb.org/eto/ontologies/2023/5/foot> rdf:type owl:Ontology ;
+                                                         rdfs:label "foot" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerHasClub
+foot:PlayerHasClub rdf:type owl:AnnotationProperty ;
+                   rdfs:comment "Property represents the club of a player" ;
+                   rdfs:label "PlayerHasClub" .
+
+
+###  http://www.w3.org/2002/07/owl#cardinality
+owl:cardinality rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ClubHasManager
+foot:ClubHasManager rdf:type owl:ObjectProperty ;
+                    rdfs:domain foot:Club ;
+                    rdfs:range foot:ClubManager ;
+                    rdfs:label "ClubHasManager" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ClubOwnsStadium
+foot:ClubOwnsStadium rdf:type owl:ObjectProperty ;
+                     rdfs:domain foot:Club ;
+                     rdfs:range foot:Stadium ;
+                     rdfs:comment "Property represents a stadium of a club" ;
+                     rdfs:label "ClubOwnsStadium" ;
+                     owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ClubStatistics
+foot:ClubStatistics rdf:type owl:ObjectProperty ;
+                    rdfs:domain foot:Club ;
+                    rdfs:range foot:ClubStatistics .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagerHasNationality
+foot:ManagerHasNationality rdf:type owl:ObjectProperty ,
+                                    owl:IrreflexiveProperty ;
+                           rdfs:domain foot:Manager ;
+                           rdfs:range foot:Country ;
+                           rdfs:comment "Property represents the nationality at which a manager belongs" ;
+                           rdfs:label "ManagerHasNationality" ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagerPlaceOfBirth
+foot:ManagerPlaceOfBirth rdf:type owl:ObjectProperty ,
+                                  owl:IrreflexiveProperty ;
+                         rdfs:domain foot:Manager ;
+                         rdfs:range foot:City ;
+                         rdfs:comment "Property represents the place of birth of the manager" ;
+                         rdfs:label "ManagerPlaceOfBirth" ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagesNationalTeam
+foot:ManagesNationalTeam rdf:type owl:ObjectProperty ;
+                         owl:inverseOf foot:NationalTeamHasManager ;
+                         rdfs:comment "Property represents a national team managed by a national manager" ;
+                         rdfs:label "ManagesNationalTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeamHasManager
+foot:NationalTeamHasManager rdf:type owl:ObjectProperty ;
+                            rdfs:domain foot:NationalTeam ;
+                            rdfs:range foot:NationalTeamManager ;
+                            rdfs:comment "Property represents a manager of a national team" ;
+                            rdfs:label "NationalTeamHasManager" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeamHasStatistics
+foot:NationalTeamHasStatistics rdf:type owl:ObjectProperty ,
+                                        owl:IrreflexiveProperty ;
+                               rdfs:domain foot:NationalTeam ;
+                               rdfs:range foot:NationalTeamStatistics ;
+                               rdfs:comment "Property represents national team statistics" ;
+                               rdfs:label "NationalTeamHasStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeamOwnsStadium
+foot:NationalTeamOwnsStadium rdf:type owl:ObjectProperty ;
+                             rdfs:domain foot:NationalTeam ;
+                             rdfs:range foot:Stadium ;
+                             rdfs:comment "Property represents a stadium of a national team" ;
+                             rdfs:label "NationalTeamOwnsStadium" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerHasClubStatistics
+foot:PlayerHasClubStatistics rdf:type owl:ObjectProperty ,
+                                      owl:IrreflexiveProperty ;
+                             rdfs:domain foot:ClubPlayer ;
+                             rdfs:range foot:ClubStatistics ;
+                             rdfs:comment "Property represents the statistics of the player in club" ;
+                             rdfs:label "PlayerHasClubStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerHasNationalTeam
+foot:PlayerHasNationalTeam rdf:type owl:ObjectProperty ;
+                           rdfs:domain foot:Player ;
+                           rdfs:range foot:NationalTeam ;
+                           rdfs:comment "Property represents the national team of a player" ;
+                           rdfs:label "PlayerHasNationalTeam" ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerHasNationality
+foot:PlayerHasNationality rdf:type owl:ObjectProperty ,
+                                   owl:IrreflexiveProperty ;
+                          rdfs:domain foot:Player ;
+                          rdfs:range foot:Country ;
+                          rdfs:comment "Property represents the nationality at which a player belongs" ;
+                          rdfs:label "PlayerHasNationality" ;
+                          owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerPlaceOfBirth
+foot:PlayerPlaceOfBirth rdf:type owl:ObjectProperty ,
+                                 owl:IrreflexiveProperty ;
+                        rdfs:domain foot:Player ;
+                        rdfs:range foot:City ;
+                        rdfs:comment "Property represents the place of birth of the player" ;
+                        rdfs:label "PlayerPlaceOfBirth" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlaysHasNationalTeamStatistics
+foot:PlaysHasNationalTeamStatistics rdf:type owl:ObjectProperty ,
+                                             owl:IrreflexiveProperty ;
+                                    rdfs:domain foot:NationalTeamPlayer ;
+                                    rdfs:range foot:PlayerClubStatistics ;
+                                    rdfs:comment "Property represents the statistics of the player with the national team" ;
+                                    rdfs:label "PlayerHasNationalTeamStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#RefereeHasNationality
+foot:RefereeHasNationality rdf:type owl:ObjectProperty ,
+                                    owl:IrreflexiveProperty ;
+                           rdfs:domain foot:Referee ;
+                           rdfs:range foot:Country ;
+                           rdfs:comment "Property represents the nationality at which a referee belongs" ;
+                           rdfs:label "RefereeHasNationality" ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#RefereePlaceOfBirth
+foot:RefereePlaceOfBirth rdf:type owl:ObjectProperty ,
+                                  owl:IrreflexiveProperty ;
+                         rdfs:domain foot:Referee ;
+                         rdfs:range foot:City ;
+                         rdfs:comment "Property represents the place of birth of the referee" ;
+                         rdfs:label "RefereePlaceOfBirth" ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#cityTeamRelation
+foot:cityTeamRelation rdf:type owl:ObjectProperty ;
+                      owl:inverseOf foot:inverseCityTeamRelation ;
+                      rdfs:domain foot:City ;
+                      rdfs:range foot:Team ;
+                      rdfs:comment "Relates a city to a team (City to Team)" ;
+                      rdfs:label "CityHoldsTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#continentCountryRelation
+foot:continentCountryRelation rdf:type owl:ObjectProperty ;
+                              owl:inverseOf foot:inverseContinentCountryRelation ;
+                              rdf:type owl:IrreflexiveProperty ;
+                              rdfs:domain foot:Continent ;
+                              rdfs:range foot:Country ;
+                              rdfs:comment "Relates a continent to a country (Continent to Country)" ;
+                              rdfs:label "ContinentHoldsCountry" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#countryCityRelation
+foot:countryCityRelation rdf:type owl:ObjectProperty ;
+                         owl:inverseOf foot:inverseCountryCityRelation ;
+                         rdfs:domain foot:Country ;
+                         rdfs:range foot:City ;
+                         rdfs:comment "Relates a country to a city (Country to City)" ;
+                         rdfs:label "CountryHoldsCity" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#inverseCityTeamRelation
+foot:inverseCityTeamRelation rdf:type owl:ObjectProperty ,
+                                      owl:IrreflexiveProperty ;
+                             rdfs:comment "Property represents the city where the team is located" ;
+                             rdfs:label "TeamIsLocatedInCity" ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#inverseContinentCountryRelation
+foot:inverseContinentCountryRelation rdf:type owl:ObjectProperty ;
+                                     rdfs:comment "Inverse of continentCountryRelation (Country to Continent)" ;
+                                     rdfs:label "CountryBelongsToContinent" ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#inverseCountryCityRelation
+foot:inverseCountryCityRelation rdf:type owl:ObjectProperty ;
+                                rdfs:comment "Inverse of countryCityRelation (City to Country)" ;
+                                rdfs:label "CityBelongsToCountry" ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#inverseTeamPlayerRelation
+foot:inverseTeamPlayerRelation rdf:type owl:ObjectProperty ;
+                               owl:inverseOf foot:teamPlayerRelation ;
+                               rdfs:comment "Property represents the player of a team" ;
+                               rdfs:label "PlayerHasTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#playerPlayerStatisticsRelation
+foot:playerPlayerStatisticsRelation rdf:type owl:ObjectProperty ,
+                                             owl:IrreflexiveProperty ;
+                                    rdfs:domain foot:Player ;
+                                    rdfs:range foot:PlayerStatistics ;
+                                    rdfs:comment "Relates a player to player statistics (Player to PlayerStatistics)" ;
+                                    rdfs:label "PlayerHasStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#teamPlayerRelation
+foot:teamPlayerRelation rdf:type owl:ObjectProperty ,
+                                 owl:IrreflexiveProperty ;
+                        rdfs:domain foot:Team ;
+                        rdfs:range foot:Player ;
+                        rdfs:comment "Relates a team to a player (Team to Player)" ;
+                        rdfs:label "TeamHasPlayer" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#teamTeamStatisticsRelation
+foot:teamTeamStatisticsRelation rdf:type owl:ObjectProperty ,
+                                         owl:IrreflexiveProperty ;
+                                rdfs:domain foot:Team ;
+                                rdfs:range foot:TeamStatistics ;
+                                rdfs:comment "Relates a team to team statistics (Team to TeamStatistics)" ;
+                                rdfs:label "TeamHasStatistics" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#CityName
+foot:CityName rdf:type owl:DatatypeProperty ;
+              rdfs:domain foot:City ;
+              rdfs:range rdf:PlainLiteral ;
+              rdfs:label "CityName" ;
+              owl:cardinality 1 .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ContinentName
+foot:ContinentName rdf:type owl:DatatypeProperty ;
+                   rdfs:domain foot:Continent ;
+                   rdfs:range rdf:PlainLiteral ;
+                   rdfs:comment "Data property represents the continent name" ;
+                   rdfs:label "ContinentName" ;
+                   owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#CountryName
+foot:CountryName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain foot:Country ;
+                 rdfs:range rdf:PlainLiteral ;
+                 rdfs:comment "Data property represents the country name" ;
+                 rdfs:label "CountryName" ;
+                 owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagerBirthday
+foot:ManagerBirthday rdf:type owl:DatatypeProperty ;
+                     rdfs:domain foot:Manager ;
+                     rdfs:range xsd:dateTime ;
+                     rdfs:comment "Data property represents the manager birthday" ;
+                     rdfs:label "ManagerBirthday" ;
+                     owl:cardinality ""^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagerFirstName
+foot:ManagerFirstName rdf:type owl:DatatypeProperty ;
+                      rdfs:domain foot:Manager ;
+                      rdfs:range rdf:PlainLiteral ;
+                      rdfs:comment "Data property represents the manager first name" ;
+                      rdfs:label "ManagerFirstName" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagerIsMale
+foot:ManagerIsMale rdf:type owl:DatatypeProperty ;
+                   rdfs:domain foot:Manager ;
+                   rdfs:range xsd:boolean ;
+                   rdfs:comment "Data property represents the manager genre" ;
+                   rdfs:label "ManagerIsMale" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ManagerLastName
+foot:ManagerLastName rdf:type owl:DatatypeProperty ;
+                     rdfs:domain foot:Manager ;
+                     rdfs:range rdf:PlainLiteral ;
+                     rdfs:comment "Data property represents the last name of the manager" ;
+                     rdfs:label "ManagerLastName" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#MatchDatePlayer
+foot:MatchDatePlayer rdf:type owl:DatatypeProperty ;
+                     rdfs:domain foot:PlayerStatistics ;
+                     rdfs:range xsd:dateTime ;
+                     rdfs:comment "Data property represents a date at which the player attended a match" ;
+                     rdfs:label "MatchDatePlayer" ;
+                     owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#MatchDateTeam
+foot:MatchDateTeam rdf:type owl:DatatypeProperty ;
+                   rdfs:domain foot:TeamStatistics ;
+                   rdfs:range xsd:dateTime ;
+                   rdfs:comment "Data Property represents the match date of team at which it attended" ;
+                   rdfs:label "MatchDateTeam" ;
+                   owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NumberOfGoalPlayer
+foot:NumberOfGoalPlayer rdf:type owl:DatatypeProperty ;
+                        rdfs:domain foot:PlayerStatistics ;
+                        rdfs:range xsd:int ;
+                        rdfs:comment "Data property represents the numbe of goals of a player" ;
+                        rdfs:label "NumberOfGoalPlayer" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NumberOfGoalTeam
+foot:NumberOfGoalTeam rdf:type owl:DatatypeProperty ;
+                      rdfs:domain foot:TeamStatistics ;
+                      rdfs:range xsd:int ;
+                      rdfs:comment "Data Property represents the number of goals of a team" ;
+                      rdfs:label "NumberOfGoalTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NumberOfRedCardsPlayer
+foot:NumberOfRedCardsPlayer rdf:type owl:DatatypeProperty ;
+                            rdfs:domain foot:PlayerStatistics ;
+                            rdfs:range xsd:int ;
+                            rdfs:comment "Data property represents the number of red cards of a player" ;
+                            rdfs:label "NumberOfRedCardsOf Player" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NumberOfRedCardsTeam
+foot:NumberOfRedCardsTeam rdf:type owl:DatatypeProperty ;
+                          rdfs:domain foot:TeamStatistics ;
+                          rdfs:range xsd:int ;
+                          rdfs:comment "Data property represents the number of red cards of a team at it attended" ;
+                          rdfs:label "NumberOfRedCardsTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NumberOfYellowCardsOf_Player
+foot:NumberOfYellowCardsOf_Player rdf:type owl:DatatypeProperty ;
+                                  rdfs:domain foot:PlayerStatistics ;
+                                  rdfs:range xsd:int ;
+                                  rdfs:comment "Data property represents the number of yellow cards of a player" ;
+                                  rdfs:label "NumberOfYellowCardsOf Player" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NumberOfYellowCardsTeam
+foot:NumberOfYellowCardsTeam rdf:type owl:DatatypeProperty ;
+                             rdfs:domain foot:TeamStatistics ;
+                             rdfs:range xsd:hexBinary ;
+                             rdfs:comment "Data property represents the number of yellow cards of a team at it attended" ;
+                             rdfs:label "NumberOfYellowCardsTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerBirthday
+foot:PlayerBirthday rdf:type owl:DatatypeProperty ;
+                    rdfs:domain foot:Player ;
+                    rdfs:range xsd:dateTime ;
+                    rdfs:comment "Data property represents the player birthday" ;
+                    rdfs:label "PlayerBirthday" ;
+                    owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerFirstName
+foot:PlayerFirstName rdf:type owl:DatatypeProperty ;
+                     rdfs:domain foot:Player ;
+                     rdfs:range rdf:PlainLiteral ;
+                     rdfs:comment "Data property represents the player first name" ;
+                     rdfs:label "PlayerFirstName" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerIsMale
+foot:PlayerIsMale rdf:type owl:DatatypeProperty ;
+                  rdfs:domain foot:Player ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:comment "Data property represents the player genre" ;
+                  rdfs:label "PlayerIsMale" ;
+                  owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerLastName
+foot:PlayerLastName rdf:type owl:DatatypeProperty ;
+                    rdfs:domain foot:Player ;
+                    rdfs:range rdf:PlainLiteral ;
+                    rdfs:comment "Data property represents the player last name" ;
+                    rdfs:label "PlayerLastName" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#RefereeBirthday
+foot:RefereeBirthday rdf:type owl:DatatypeProperty ;
+                     rdfs:domain foot:Referee ;
+                     rdfs:range xsd:dateTime ;
+                     rdfs:comment "Data property represents the player birthday" ;
+                     rdfs:label "RefereeBirthday" ;
+                     owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#RefereeIsMale
+foot:RefereeIsMale rdf:type owl:DatatypeProperty ;
+                   rdfs:domain foot:Referee ;
+                   rdfs:range xsd:boolean ;
+                   rdfs:comment "Data property reprensents referee genre" ;
+                   rdfs:label "RefereeIsMale" ;
+                   owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#StadiumName
+foot:StadiumName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain foot:Stadium ;
+                 rdfs:range rdf:PlainLiteral ;
+                 rdfs:comment "Data property represents the stadium name" ;
+                 rdfs:label "StadiumName" ;
+                 owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#TeamIsMale
+foot:TeamIsMale rdf:type owl:DatatypeProperty ;
+                rdfs:domain foot:Team ;
+                rdfs:range xsd:boolean ;
+                rdfs:comment "Data property represents team genre" ;
+                rdfs:label "TeamIsMale" ;
+                owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#TeamName
+foot:TeamName rdf:type owl:DatatypeProperty ;
+              rdfs:domain foot:Team ;
+              rdfs:range rdf:PlainLiteral ;
+              rdfs:comment "Data property represents the team name" ;
+              rdfs:label "TeamName" ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#City
+foot:City rdf:type owl:Class ;
+          rdfs:subClassOf foot:Location ;
+          rdfs:comment "Class represents a city" ;
+          rdfs:label "City" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Club
+foot:Club rdf:type owl:Class ;
+          rdfs:subClassOf foot:Team ;
+          rdfs:label "Club" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ClubManager
+foot:ClubManager rdf:type owl:Class ;
+                 rdfs:subClassOf foot:Manager ;
+                 rdfs:comment "Class represents a club manager" ;
+                 rdfs:label "ClubManager" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ClubPlayer
+foot:ClubPlayer rdf:type owl:Class ;
+                rdfs:subClassOf foot:Player ;
+                rdfs:comment "Class represents a club player" ;
+                rdfs:label "ClubPlayer" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ClubStatistics
+foot:ClubStatistics rdf:type owl:Class ;
+                    rdfs:subClassOf foot:TeamStatistics ;
+                    owl:disjointWith foot:NationalTeamStatistics .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Continent
+foot:Continent rdf:type owl:Class ;
+               rdfs:subClassOf foot:Location ;
+               rdfs:comment "Class represents a continent" ;
+               rdfs:label "Continent" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Country
+foot:Country rdf:type owl:Class ;
+             rdfs:subClassOf foot:Location ;
+             rdfs:comment "Class represents a country" ;
+             rdfs:label "Country" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#InternationalReferee
+foot:InternationalReferee rdf:type owl:Class ;
+                          rdfs:subClassOf foot:Referee ;
+                          rdfs:comment "Class represents an international referee" ;
+                          rdfs:label "InternationalReferee" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Location
+foot:Location rdf:type owl:Class ;
+              rdfs:comment "Class represents a laocation" ;
+              rdfs:label "Location" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Manager
+foot:Manager rdf:type owl:Class ;
+             rdfs:subClassOf foot:Person ;
+             rdfs:comment "Class represents a manager" ;
+             rdfs:label "Manager" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalReferee
+foot:NationalReferee rdf:type owl:Class ;
+                     rdfs:subClassOf foot:Referee ;
+                     rdfs:comment "Class represents a national referee" ;
+                     rdfs:label "NationalReferee" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeam
+foot:NationalTeam rdf:type owl:Class ;
+                  rdfs:subClassOf foot:Team ;
+                  rdfs:comment "Class represents a national team" ;
+                  rdfs:label "NationalTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeamManager
+foot:NationalTeamManager rdf:type owl:Class ;
+                         rdfs:subClassOf foot:Manager ;
+                         rdfs:comment "Class represents a national team manager" ;
+                         rdfs:label "NationalTeamManager" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeamPlayer
+foot:NationalTeamPlayer rdf:type owl:Class ;
+                        rdfs:subClassOf foot:Player ;
+                        rdfs:comment "Class represents a national team player" ;
+                        rdfs:label "NationalTeamPlayer" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#NationalTeamStatistics
+foot:NationalTeamStatistics rdf:type owl:Class ;
+                            rdfs:subClassOf foot:TeamStatistics ;
+                            rdfs:comment "Class represents the statistics of the national team" ;
+                            rdfs:label "NationalTeamStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Person
+foot:Person rdf:type owl:Class ;
+            rdfs:comment "Class represents a person" ;
+            rdfs:label "Person" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Player
+foot:Player rdf:type owl:Class ;
+            rdfs:subClassOf foot:Person ;
+            rdfs:label "Class represents a player" ,
+                       "Player" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerClubStatistics
+foot:PlayerClubStatistics rdf:type owl:Class ;
+                          rdfs:subClassOf foot:PlayerStatistics ;
+                          rdfs:comment "Class represents the statistics of the player in club" ;
+                          rdfs:label "PlayerClubStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerNationalTeamStatistics
+foot:PlayerNationalTeamStatistics rdf:type owl:Class ;
+                                  rdfs:subClassOf foot:PlayerStatistics ;
+                                  rdfs:comment "Class represents the statistics of a player with national team" ;
+                                  rdfs:label "PlayerNationalTeamStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PlayerStatistics
+foot:PlayerStatistics rdf:type owl:Class ;
+                      rdfs:subClassOf foot:Statistics ;
+                      rdfs:comment "Represents player statistics" ;
+                      rdfs:label "PlayerStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Referee
+foot:Referee rdf:type owl:Class ;
+             rdfs:subClassOf foot:Person ;
+             rdfs:comment "Class represents a referee" ;
+             rdfs:label "Referee" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Stadium
+foot:Stadium rdf:type owl:Class ;
+             rdfs:subClassOf foot:Location ;
+             rdfs:comment "Class represents a stadium" ;
+             rdfs:label "Stadium" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Statistics
+foot:Statistics rdf:type owl:Class ;
+                rdfs:comment "Class represents the statistics" ;
+                rdfs:label "Statistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Team
+foot:Team rdf:type owl:Class ;
+          rdfs:comment "Class represents a team" ;
+          rdfs:label "Team" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#TeamStatistics
+foot:TeamStatistics rdf:type owl:Class ;
+                    rdfs:subClassOf foot:Statistics ;
+                    rdfs:comment "Represents team statistics." ;
+                    rdfs:label "TeamStatistics" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Colina
+foot:Colina rdf:type owl:NamedIndividual ,
+                     foot:Referee ;
+            foot:RefereePlaceOfBirth foot:Paris ;
+            foot:RefereeIsMale "true"^^xsd:boolean ;
+            rdfs:label "Colina" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Deschamps
+foot:Deschamps rdf:type owl:NamedIndividual ,
+                        foot:NationalTeamManager ;
+               foot:ManagesNationalTeam foot:France ;
+               foot:ManagerFirstName "Didier" ;
+               foot:ManagerIsMale "true"^^xsd:boolean ;
+               foot:RefereeBirthday "1967-06-25T12:30:45Z"^^xsd:dateTime ;
+               rdfs:label "Deschamps" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Europe
+foot:Europe rdf:type owl:NamedIndividual ,
+                     foot:Continent ;
+            foot:continentCountryRelation foot:France ;
+            foot:ContinentName "Europe" ;
+            rdfs:label "Europe" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#France
+foot:France rdf:type owl:NamedIndividual ,
+                     foot:Country ;
+            foot:NationalTeamHasManager foot:Deschamps ;
+            foot:PlayerPlaceOfBirth foot:Paris ;
+            foot:inverseContinentCountryRelation foot:Europe ;
+            foot:CountryName "France" ;
+            rdfs:label "France" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#FranceTeam
+foot:FranceTeam rdf:type owl:NamedIndividual ,
+                         foot:NationalTeam ;
+                foot:NationalTeamHasManager foot:Deschamps ;
+                foot:TeamIsMale "true"^^xsd:boolean ;
+                foot:TeamName "France" ;
+                rdfs:label "FranceTeam" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Mbappe
+foot:Mbappe rdf:type owl:NamedIndividual ,
+                     foot:Player ;
+            foot:PlayerHasClubStatistics foot:MbappeStatisticsPSG ;
+            foot:PlayerHasNationality foot:France ;
+            foot:PlayerPlaceOfBirth foot:Paris ;
+            foot:PlaysHasNationalTeamStatistics foot:MbappeFranceStatistics ;
+            foot:inverseTeamPlayerRelation foot:FranceTeam ;
+            foot:PlayerFirstName "Kilyan" ;
+            foot:PlayerIsMale "true"^^xsd:boolean ;
+            foot:PlayerLastName "Mbappe" ;
+            foot:PlayerHasClub foot:PSG ;
+            rdfs:label "Mbappe" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#MbappeFranceStatistics
+foot:MbappeFranceStatistics rdf:type owl:NamedIndividual ,
+                                     foot:PlayerNationalTeamStatistics ;
+                            foot:NumberOfGoalPlayer "54"^^xsd:int ;
+                            foot:NumberOfRedCardsPlayer "0"^^xsd:int ;
+                            foot:NumberOfYellowCardsOf_Player "4"^^xsd:int ;
+                            rdfs:label "MbappeFranceStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#MbappeStatisticsPSG
+foot:MbappeStatisticsPSG rdf:type owl:NamedIndividual ,
+                                  foot:PlayerClubStatistics ;
+                         foot:NumberOfGoalPlayer "150"^^xsd:int ;
+                         foot:NumberOfRedCardsPlayer "1"^^xsd:int ;
+                         foot:NumberOfYellowCardsOf_Player "7"^^xsd:int ;
+                         rdfs:label "MbappePSGStatistics" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#PSG
+foot:PSG rdf:type owl:NamedIndividual ,
+                  foot:Club ;
+         foot:inverseCityTeamRelation foot:Paris ;
+         foot:TeamIsMale "true"^^xsd:boolean ;
+         rdfs:label "PSG" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#ParcDesPrinces
+foot:ParcDesPrinces rdf:type owl:NamedIndividual ,
+                             foot:Stadium ;
+                    foot:inverseCityTeamRelation foot:Paris ;
+                    foot:StadiumName "Parc Des Princes"^^rdf:langString ;
+                    rdfs:label "ParcDesPrinces" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Paris
+foot:Paris rdf:type owl:NamedIndividual ,
+                    foot:City ;
+           foot:inverseCountryCityRelation foot:France ;
+           foot:CityName "Paris" ;
+           rdfs:label "Paris" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Renard
+foot:Renard rdf:type owl:NamedIndividual ,
+                     foot:Player ;
+            foot:PlayerHasNationality foot:France ;
+            foot:PlayerPlaceOfBirth foot:Paris ;
+            foot:PlayerBirthday "1990-05-25T12:30:45Z"^^xsd:dateTime ;
+            foot:PlayerFirstName "Wendy" ;
+            foot:PlayerIsMale "false"^^xsd:boolean ,
+                              "true"^^xsd:boolean ;
+            foot:PlayerLastName "Rernard" ;
+            rdfs:label "Renard" .
+
+
+###  http://www.semanticweb.org/eto/ontologies/2023/5/foot#Wendy
+foot:Wendy rdf:type owl:NamedIndividual ,
+                    foot:ClubPlayer ;
+           foot:PlayerPlaceOfBirth foot:Paris ;
+           foot:PlayerFirstName "Wendy" ;
+           foot:PlayerIsMale "false"^^xsd:boolean ;
+           foot:PlayerLastName "Renard" ;
+           rdfs:label "Wendy" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+foot:ClubStatistics rdfs:comment "Property represents the statistics of the club" ;
+                    rdfs:label "ClubStatistics" .
+
+
+foot:inverseTeamManagerRelation rdfs:comment "Property represents the manager of a team" ;
+                                rdfs:label "ManagerHasTeam" .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
